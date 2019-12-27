@@ -51,6 +51,8 @@ public abstract class AbstractResource implements Resource {
 	 * This implementation checks whether a File can be opened,
 	 * falling back to whether an InputStream can be opened.
 	 * This will cover both directories and content resources.
+	 *
+	 * 判断文件是否存在，若判断过程产生异常（因为会调用SecurityManager来判断），就关闭对应的流
 	 */
 	@Override
 	public boolean exists() {
@@ -108,6 +110,7 @@ public abstract class AbstractResource implements Resource {
 	/**
 	 * This implementation throws a FileNotFoundException, assuming
 	 * that the resource cannot be resolved to a URL.
+	 * 抛出异常，交给子类实现
 	 */
 	@Override
 	public URL getURL() throws IOException {
@@ -143,6 +146,8 @@ public abstract class AbstractResource implements Resource {
 	 * with the result of {@link #getInputStream()}.
 	 * <p>This is the same as in {@link Resource}'s corresponding default method
 	 * but mirrored here for efficient JVM-level dispatching in a class hierarchy.
+	 *
+	 * 根据inputStream构建ReadableChannel
 	 */
 	@Override
 	public ReadableByteChannel readableChannel() throws IOException {

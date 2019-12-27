@@ -22,6 +22,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 
 /**
+ * DefaultResourceLoader 一次只能根据path加载一个资源, 当需要加载多个资源时，只能多次调用getResource方法
+ * 该接口是ResourceLoader的扩展，支持根据指定的资源路径匹配模式每次返回多个Resource实例
+ *
  * Strategy interface for resolving a location pattern (for example,
  * an Ant-style path pattern) into Resource objects.
  *
