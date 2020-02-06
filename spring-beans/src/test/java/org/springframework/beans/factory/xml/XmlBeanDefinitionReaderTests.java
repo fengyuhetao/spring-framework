@@ -57,6 +57,7 @@ public class XmlBeanDefinitionReaderTests {
 
 	@Test
 	public void withOpenInputStreamAndExplicitValidationMode() {
+		// bean容器，持有bean definitions
 		SimpleBeanDefinitionRegistry registry = new SimpleBeanDefinitionRegistry();
 		Resource resource = new InputStreamResource(getClass().getResourceAsStream("test.xml"));
 		XmlBeanDefinitionReader reader = new XmlBeanDefinitionReader(registry);

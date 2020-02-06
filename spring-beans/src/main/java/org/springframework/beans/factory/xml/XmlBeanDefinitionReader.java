@@ -106,6 +106,7 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
 
 	private int validationMode = VALIDATION_AUTO;
 
+	// 命名空间支持
 	private boolean namespaceAware = false;
 
 	private Class<? extends BeanDefinitionDocumentReader> documentReaderClass =

@@ -45,8 +45,10 @@ public class DelegatingEntityResolver implements EntityResolver {
 	public static final String XSD_SUFFIX = ".xsd";
 
 
+	// spring bean dtd解析器，从classpath或者jar文件加载dtd
 	private final EntityResolver dtdResolver;
 
+	// 使用一系列map文件将schema url解析到本地classpath
 	private final EntityResolver schemaResolver;
 
 
@@ -76,7 +78,18 @@ public class DelegatingEntityResolver implements EntityResolver {
 		this.schemaResolver = schemaResolver;
 	}
 
-
+	/**
+	 * publicId：被引用的外部实体的公共标识符，如果没有提供，则返回null
+	 * systemId：被引用的外部实体的系统标识符 这两个参数的实际内容和具体的验证模式有关系。如下
+	 *
+	 * XSD 验证模式
+	 *
+	 * publicId：null
+	 * systemId：http://www.springframework.org/schema/beans/spring-beans.xsd
+	 * DTD 验证模式
+	 * publicId：-//SPRING//DTD BEAN 2.0//EN
+	 * systemId：http://www.springframework.org/dtd/spring-beans.dtd 如下：
+	 */
 	@Override
 	@Nullable
 	public InputSource resolveEntity(@Nullable String publicId, @Nullable String systemId)
